@@ -1,0 +1,1 @@
+dotnet fsi main.fsx

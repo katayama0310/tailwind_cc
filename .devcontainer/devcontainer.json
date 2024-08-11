@@ -6,7 +6,8 @@
         "vscode": {
             "extensions": [
                 "Ionide.Ionide-fsharp",
-                "GitHub.copilot"
+                "GitHub.copilot",
+                "ms-dotnettools.vscode-dotnet-runtime"
             ],
             "settings": {
                 "[fsharp]": {
