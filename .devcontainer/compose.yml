@@ -1,0 +1,7 @@
+services:
+  workspace:
+    image: "mcr.microsoft.com/dotnet/sdk:8.0"
+    working_dir: "/src"
+    volumes:
+      - ../:/work
+    tty: true
