@@ -1,41 +1,50 @@
-printfn "Hello World from F#"
+#load "/work/Types.fsx"
+open Types
 
-// for loop
-for i in 1..10 do
-    printfn "%d" i
 
-// while loop
-let mutable i = 0
+let person: Person = { first = "John"; last = "Doe" }
+let first = person.first
+let last = person.last
 
-while i < 10 do
-    printfn "%d" i
-    i <- i + 1
+type OrderQuantity = |UnitQuantity of int |KilogramQuantity of float
 
-// if-else expression
-let x = 10
-printfn "x is %s than 5" (if x > 5 then "greater" else "less than or equal")
+let anOrderQtyInUmits = UnitQuantity 10
+let anOrderQtyInKg = KilogramQuantity 2.5
 
-// function to add two numbers
-let add x y = x + y
-let result = add 10 20
+let qtyInUnits = 
+    match anOrderQtyInUmits with
+    | UnitQuantity qty -> 
+        printfn "The quantity is %d" qty
+    | KilogramQuantity qty -> 
+        printfn "The quantity is %f" qty
 
-// function to convert a number to a string
-let numToString =
-    function
-    | 1 -> "one"
-    | 2 -> "two"
-    | 3 -> "three"
-    | _ -> "many"
+type Num = int
+type CheckNumber = CheckNumber of int
+type CardNumber = CardNumber of int
 
-let result2 = numToString 3
+type CardType = 
+    | Visa 
+    | MasterCard // OR
 
-// function that returns an Ok or Error
-let errableFunction x =
-    if x > 5 then Ok x else Error "x is less than or equal to 5"
+type CreditCardInfo = {
+    CardType: CardType
+    Number: CardNumber
+}
 
-let result3 = errableFunction 5
-let result4 = errableFunction 6
-printfn "%A %A" result3 result4
+type PaymentMethod = 
+    | Cash
+    | Check of CheckNumber
+    | CreditCard of CreditCardInfo
 
-result3 |> Result.iter (printfn "Success: %d")
-result4 |> Result.iter (printfn "Success: %d")
+type PersonalName = {
+    First: string
+    Last: string
+    MiddleInitial: string option
+}
+
+
+ 
+
+
+
+
