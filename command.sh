@@ -1,1 +1,1 @@
-dotnet fsi main.fsx
+dotnet fsi src/main.fsx

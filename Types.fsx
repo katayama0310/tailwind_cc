@@ -1,1 +1,0 @@
-type Person = { first: string; last: string }

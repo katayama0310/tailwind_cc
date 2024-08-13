@@ -1,4 +1,4 @@
-#load "/work/Types.fsx"
+#load "/work/src/types/Types.fsx"
 open Types
 
 
@@ -18,7 +18,7 @@ let qtyInUnits =
     | KilogramQuantity qty -> 
         printfn "The quantity is %f" qty
 
-type Num = int
+
 type CheckNumber = CheckNumber of int
 type CardNumber = CardNumber of int
 
@@ -35,6 +35,19 @@ type PaymentMethod =
     | Cash
     | Check of CheckNumber
     | CreditCard of CreditCardInfo
+
+type PaymentAmount  = PaymentAmount of decimal
+type Currency = EUR | USD
+
+type Payment = {
+    Amount: PaymentAmount
+    Currency: Currency
+    Method: PaymentMethod
+}
+
+// type PaymentInvoice = UnpaidInvoice -> Payment -> PaidInvoice
+// type ConvertPaymentCurrency = Payment -> Currency -> Payment
+
 
 type PersonalName = {
     First: string
