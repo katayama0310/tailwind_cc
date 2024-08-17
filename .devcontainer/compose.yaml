@@ -1,6 +1,6 @@
 services:
   workspace:
-    image: "mcr.microsoft.com/dotnet/sdk:8.0"
+    build: .
     working_dir: "/src"
     volumes:
       - ../:/work

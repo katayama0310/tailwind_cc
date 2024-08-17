@@ -1,63 +1,61 @@
 #load "/work/src/types/Types.fsx"
 open Types
 
+// ラムダ
+fun x -> x * x
 
-let person: Person = { first = "John"; last = "Doe" }
-let first = person.first
-let last = person.last
+// ラムダの適用
+(fun x -> x * x) 3
 
-type OrderQuantity = |UnitQuantity of int |KilogramQuantity of float
+// ラムダの適用
+let square = fun x -> x * x
+square 3
 
-let anOrderQtyInUmits = UnitQuantity 10
-let anOrderQtyInKg = KilogramQuantity 2.5
+// パイプライン
+let add x y = x + y
+let square2 x = x * x
+let addSquare x y = x |> add y |> square2
+let ret = addSquare 3 4
+printfn "%d" ret
 
-let qtyInUnits = 
-    match anOrderQtyInUmits with
-    | UnitQuantity qty -> 
-        printfn "The quantity is %d" qty
-    | KilogramQuantity qty -> 
-        printfn "The quantity is %f" qty
+let syaGreeet greet name = printfn "%s %s" greet name
+syaGreeet "Hello" "World"
 
+let sayHello = syaGreeet "Hello"
+let sayGoodbye = syaGreeet "Goodbye"
+sayHello "World"
+sayGoodbye "World"
 
-type CheckNumber = CheckNumber of int
-type CardNumber = CardNumber of int
+// unit
+fun func x -> ()
+// 未払い請求書の支払い処理に関する型の定義
+// 未払いの請求書に対して支払い処理を実施する→
+//    成功時の出力:支払い済みの請求書
+//    失敗時の出力：支払いエラー
+type UnpaidInvoice = { InvoiceId: int; Amount: decimal }
+type PaidInvoice = { InvoiceId: int; Amount: decimal }
+type Payment = { Amount: decimal }
 
-type CardType = 
-    | Visa 
-    | MasterCard // OR
+type PaymentError =
+    { InvoiceId: int
+      Amount: decimal
+      Error: string }
 
-type CreditCardInfo = {
-    CardType: CardType
-    Number: CardNumber
-}
+type PayInvoice = UnpaidInvoice -> Payment -> Result<PaidInvoice, PaymentError>
 
-type PaymentMethod = 
-    | Cash
-    | Check of CheckNumber
-    | CreditCard of CreditCardInfo
+// use PayInvoice
+let payInvoice: PayInvoice =
+    fun unpaid payment ->
+        if unpaid.Amount > payment.Amount then
+            Error
+                { InvoiceId = unpaid.InvoiceId
+                  Amount = unpaid.Amount
+                  Error = "Payment amount is not enough" }
+        else
+            Ok
+                { InvoiceId = unpaid.InvoiceId
+                  Amount = unpaid.Amount }
 
-type PaymentAmount  = PaymentAmount of decimal
-type Currency = EUR | USD
-
-type Payment = {
-    Amount: PaymentAmount
-    Currency: Currency
-    Method: PaymentMethod
-}
-
-// type PaymentInvoice = UnpaidInvoice -> Payment -> PaidInvoice
-// type ConvertPaymentCurrency = Payment -> Currency -> Payment
-
-
-type PersonalName = {
-    First: string
-    Last: string
-    MiddleInitial: string option
-}
-
-
- 
-
-
-
-
+type add1 = int -> int -> int
+let add1 = fun x y -> x + y
+let add2: add1 = fun x y -> x + y
