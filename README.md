@@ -1,6 +1,11 @@
 ## F# Playground
 
-### How to run
+### Run
 ```bash
-dotnet fsi <filename>.fsx
+$ ./command.sh
+```
+
+### Format
+```bash
+$ ./format.sh
 ```
