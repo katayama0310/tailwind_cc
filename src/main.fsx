@@ -59,3 +59,23 @@ let payInvoice: PayInvoice =
 type add1 = int -> int -> int
 let add1 = fun x y -> x + y
 let add2: add1 = fun x y -> x + y
+
+// and
+type Person = { Name: string; Age: int }
+let person = { Name = "Alice"; Age = 20 }
+
+// or
+type PayMethod =
+    | CreditCard of string
+    | BankTransfer of string
+
+let payMethod = CreditCard "1234-5678-9012-3456"
+
+// Shapeという型の値を定義する際に
+// Rectangle, Circle, Prismのいずれかの型である必要がある(OR型)
+type Shape =
+    | Rectangle of width: float * length: float
+    | Circle of radius: float
+    | Prism of width: float * float * height: float
+
+let shape = Rectangle(1.0, 2.0)
