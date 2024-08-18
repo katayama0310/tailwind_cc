@@ -12,5 +12,5 @@ $ ./format.sh
 
 ### Interactive
 ```bash
-dotnet fsi
+$ dotnet fsi
 ```
