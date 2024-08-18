@@ -86,3 +86,17 @@ let add x y = fun z -> x + y + z
 add 1 2 3
 
 let add3 = add 3
+
+// スマートコンストラクタ
+// Age 型を定義する
+type Age private (value: int) =
+    member this.Value = value
+    static member Create (value: int) =
+        if value < 0 then
+            invalidArg "value" "Age must be greater than or equal to 0"
+        else
+            Age(value)
+
+let age = Age.Create 20
+// print age
+printfn "%A" age
