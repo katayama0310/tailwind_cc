@@ -11,12 +11,8 @@ fun x -> x * x
 let square = fun x -> x * x
 square 3
 
-// パイプライン
-let add x y = x + y
+// パイプライ
 let square2 x = x * x
-let addSquare x y = x |> add y |> square2
-let ret = addSquare 3 4
-printfn "%d" ret
 
 let syaGreeet greet name = printfn "%s %s" greet name
 syaGreeet "Hello" "World"
@@ -79,3 +75,14 @@ type Shape =
     | Prism of width: float * float * height: float
 
 let shape = Rectangle(1.0, 2.0)
+
+let str = String.replicate 10 "a"
+printfn "%s" str
+
+let square3 x = x * x
+let square4 = fun x -> x * x
+
+let add x y = fun z -> x + y + z
+add 1 2 3
+
+let add3 = add 3

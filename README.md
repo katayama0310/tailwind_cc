@@ -2,10 +2,15 @@
 
 ### Run
 ```bash
-$ ./command.sh
+$ ./run.sh
 ```
 
 ### Format
 ```bash
 $ ./format.sh
+```
+
+### Interactive
+```bash
+dotnet fsi
 ```
