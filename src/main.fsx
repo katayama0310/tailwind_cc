@@ -56,10 +56,6 @@ type add1 = int -> int -> int
 let add1 = fun x y -> x + y
 let add2: add1 = fun x y -> x + y
 
-// and
-type Person = { Name: string; Age: int }
-let person = { Name = "Alice"; Age = 20 }
-
 // or
 type PayMethod =
     | CreditCard of string
@@ -87,16 +83,8 @@ add 1 2 3
 
 let add3 = add 3
 
-// スマートコンストラクタ
-// Age 型を定義する
-type Age private (value: int) =
-    member this.Value = value
-    static member Create (value: int) =
-        if value < 0 then
-            invalidArg "value" "Age must be greater than or equal to 0"
-        else
-            Age(value)
-
-let age = Age.Create 20
-// print age
-printfn "%A" age
+type Person = { Name: string; Age: int }
+type Name = Name of string
+type UpdateName = Person -> Name -> Person
+let updateName: UpdateName = fun person (Name name) -> { person with Name = name }
+updateName { Name = "John"; Age = 30 } (Name "Jane")
