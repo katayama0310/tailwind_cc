@@ -14,3 +14,6 @@ $ ./format.sh
 ```bash
 $ dotnet fsi
 ```
+
+> [!CAUTION]
+> Please do not modify anything code/* path.
