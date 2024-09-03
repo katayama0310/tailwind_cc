@@ -88,3 +88,13 @@ type Name = Name of string
 type UpdateName = Person -> Name -> Person
 let updateName: UpdateName = fun person (Name name) -> { person with Name = name }
 updateName { Name = "John"; Age = 30 } (Name "Jane")
+
+// add
+let add5 x y z = x + y + z
+
+// List
+let numbers = [ 1; 2; 3; 4; 5 ]
+
+// List.map
+let double x = x * 2
+let doubledNumbers = List.map double numbers
