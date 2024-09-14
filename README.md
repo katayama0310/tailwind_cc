@@ -1,5 +1,8 @@
 ## F# Playground
 
+> [!CAUTION]
+> Do not modify any files in the code/* path.
+
 ### Run
 ```bash
 $ ./run.sh
@@ -15,5 +18,3 @@ $ ./format.sh
 $ dotnet fsi
 ```
 
-> [!CAUTION]
-> Please do not modify anything code/* path.
